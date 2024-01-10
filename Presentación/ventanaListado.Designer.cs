@@ -63,6 +63,7 @@ namespace Presentación
             this.btnAgregar.TabIndex = 1;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnModificar
             // 
@@ -84,7 +85,7 @@ namespace Presentación
             // 
             // btnDetalle
             // 
-            this.btnDetalle.Location = new System.Drawing.Point(1053, 403);
+            this.btnDetalle.Location = new System.Drawing.Point(1110, 403);
             this.btnDetalle.Name = "btnDetalle";
             this.btnDetalle.Size = new System.Drawing.Size(141, 35);
             this.btnDetalle.TabIndex = 4;
@@ -93,7 +94,7 @@ namespace Presentación
             // 
             // pbxArticulo
             // 
-            this.pbxArticulo.Location = new System.Drawing.Point(868, 47);
+            this.pbxArticulo.Location = new System.Drawing.Point(925, 47);
             this.pbxArticulo.MaximumSize = new System.Drawing.Size(326, 350);
             this.pbxArticulo.MinimumSize = new System.Drawing.Size(326, 350);
             this.pbxArticulo.Name = "pbxArticulo";
@@ -116,7 +117,7 @@ namespace Presentación
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1291, 523);
+            this.ClientSize = new System.Drawing.Size(1291, 465);
             this.Controls.Add(this.lblListado);
             this.Controls.Add(this.pbxArticulo);
             this.Controls.Add(this.btnDetalle);
@@ -124,6 +125,10 @@ namespace Presentación
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.dgvArticulos);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1309, 512);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1309, 512);
             this.Name = "ventanaListado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Artículos";
