@@ -23,10 +23,17 @@ namespace Presentación
         private void ventanaListado_Load(object sender, EventArgs e)
         {
             ArticuloNegocio articulos = new ArticuloNegocio();
-            listaArticulos = articulos.listar();
-            dgvArticulos.DataSource = listaArticulos;
-            dgvArticulos.Columns["Imagen"].Visible = false;
-            cargarImagen(listaArticulos[0].Imagen);
+            try
+            {
+                listaArticulos = articulos.listar();
+                dgvArticulos.DataSource = listaArticulos;
+                dgvArticulos.Columns["Imagen"].Visible = false;
+                cargarImagen(listaArticulos[0].Imagen);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)

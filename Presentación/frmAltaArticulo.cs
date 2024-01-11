@@ -33,10 +33,8 @@ namespace Presentación
                 nuevo.codArticulo = txtCodProducto.Text;
                 nuevo.Nombre = txtNombre.Text;
                 nuevo.Descripcion = txtDescripcion.Text;
-                nuevo.Marca = new Elemento();
-                nuevo.Marca.Descripcion = (string)cbxMarca.SelectedItem;
-                nuevo.Categoria = new Elemento();
-                nuevo.Categoria.Descripcion = (string)cbxCategoria.SelectedItem;
+                nuevo.Marca = (Elemento)cbxMarca.SelectedItem;
+                nuevo.Categoria = (Elemento)cbxCategoria.SelectedItem;
                 nuevo.Imagen = txtImagen.Text;
                 nuevo.Precio = Decimal.Parse(txtPrecio.Text);
 
@@ -47,6 +45,20 @@ namespace Presentación
             catch (Exception ex)
             {
 
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void frmAltaArticulo_Load(object sender, EventArgs e)
+        {
+            ElementoNegocio desplegable = new ElementoNegocio();
+            try
+            {
+                cbxMarca.DataSource = desplegable.listar("MARCAS");
+                cbxCategoria.DataSource = desplegable.listar("CATEGORIAS");
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.ToString());
             }
         }

@@ -54,11 +54,25 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("");
+                //Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio) values ('G22', 'Motorola G22', 'Un buen telefono', 5, 1, '', 23550)
+                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio) values (@Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @ImagenUrl, @Precio)");
+                datos.setearParametro("@Codigo", nuevo.codArticulo);
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Descripcion", nuevo.Descripcion);
+                datos.setearParametro("@IdMarca", nuevo.Marca.Id);
+                datos.setearParametro("@IdCategoria", nuevo.Categoria.Id);
+                datos.setearParametro("@ImagenUrl", nuevo.Imagen);
+                datos.setearParametro("@Precio", nuevo.Precio);
+
+                datos.ejecutarInsert();
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }

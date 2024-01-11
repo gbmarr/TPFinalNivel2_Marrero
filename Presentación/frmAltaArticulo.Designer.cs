@@ -147,6 +147,7 @@ namespace Presentación
             // cbxMarca
             // 
             this.cbxMarca.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.cbxMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxMarca.FormattingEnabled = true;
             this.cbxMarca.Location = new System.Drawing.Point(176, 145);
             this.cbxMarca.Name = "cbxMarca";
@@ -156,6 +157,7 @@ namespace Presentación
             // cbxCategoria
             // 
             this.cbxCategoria.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.cbxCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCategoria.FormattingEnabled = true;
             this.cbxCategoria.Location = new System.Drawing.Point(176, 175);
             this.cbxCategoria.Name = "cbxCategoria";
@@ -237,6 +239,7 @@ namespace Presentación
             this.Name = "frmAltaArticulo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar Artículo";
+            this.Load += new System.EventHandler(this.frmAltaArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxAltaProducto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
