@@ -22,18 +22,7 @@ namespace Presentación
 
         private void ventanaListado_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio articulos = new ArticuloNegocio();
-            try
-            {
-                listaArticulos = articulos.listar();
-                dgvArticulos.DataSource = listaArticulos;
-                dgvArticulos.Columns["Imagen"].Visible = false;
-                cargarImagen(listaArticulos[0].Imagen);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            cargarDatos();
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -53,11 +42,38 @@ namespace Presentación
                 pbxArticulo.Load("https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg");
             }
         }
+        private void cargarDatos()
+        {
+            ArticuloNegocio articulos = new ArticuloNegocio();
+            try
+            {
+                listaArticulos = articulos.listar();
+                dgvArticulos.DataSource = listaArticulos;
+                dgvArticulos.Columns["Imagen"].Visible = false;
+                dgvArticulos.Columns["ID"].Visible = false;
+                cargarImagen(listaArticulos[0].Imagen);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAltaArticulo alta = new frmAltaArticulo();
             alta.ShowDialog();
+            cargarDatos();
+        }
+
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
+            modificar.ShowDialog();
+            cargarDatos();
         }
     }
 }

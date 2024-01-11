@@ -170,6 +170,7 @@ namespace Presentación
             this.txtImagen.Name = "txtImagen";
             this.txtImagen.Size = new System.Drawing.Size(132, 22);
             this.txtImagen.TabIndex = 13;
+            this.txtImagen.Leave += new System.EventHandler(this.txtImagen_Leave);
             // 
             // txtPrecio
             // 
