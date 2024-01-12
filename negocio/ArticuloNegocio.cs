@@ -66,7 +66,7 @@ namespace negocio
                 datos.setearParametro("@ImagenUrl", nuevo.Imagen);
                 datos.setearParametro("@Precio", nuevo.Precio);
 
-                datos.ejecutarInsert();
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
@@ -94,7 +94,7 @@ namespace negocio
                 datos.setearParametro("@Precio", articulo.Precio);
                 datos.setearParametro("@Id", articulo.Id);
 
-                datos.ejecutarInsert();
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
@@ -103,6 +103,21 @@ namespace negocio
             finally
             {
                 datos.cerrarConexion();
+            }
+        }
+
+        public void eliminar(int ID)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("Delete from ARTICULOS Where Id = @Id");
+                datos.setearParametro("@Id", ID);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
