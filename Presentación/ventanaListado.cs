@@ -27,8 +27,11 @@ namespace Presentación
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-            Articulo filaSeleccionada = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            cargarImagen(filaSeleccionada.Imagen);
+            if(dgvArticulos.CurrentRow != null)
+            {
+                Articulo filaSeleccionada = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                cargarImagen(filaSeleccionada.Imagen);
+            }
         }
 
         private void cargarImagen(string img)
@@ -49,8 +52,7 @@ namespace Presentación
             {
                 listaArticulos = articulos.listar();
                 dgvArticulos.DataSource = listaArticulos;
-                dgvArticulos.Columns["Imagen"].Visible = false;
-                dgvArticulos.Columns["ID"].Visible = false;
+                ocultarColumnas();
                 cargarImagen(listaArticulos[0].Imagen);
             }
             catch (Exception ex)
@@ -69,11 +71,18 @@ namespace Presentación
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado;
-            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
-            modificar.ShowDialog();
-            cargarDatos();
+            if(dgvArticulos.CurrentRow != null)
+            {
+                Articulo seleccionado;
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                frmAltaArticulo modificar = new frmAltaArticulo(seleccionado);
+                modificar.ShowDialog();
+                cargarDatos();
+            }
+            else
+            {
+                MessageBox.Show("No existen registros con el criterio " + txtFiltroRapido.Text + " para modificar.");
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -94,6 +103,31 @@ namespace Presentación
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            string busqueda = txtFiltroRapido.Text;
+
+            if(busqueda != "")
+            {
+                listaFiltrada = listaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(busqueda.ToUpper()) || x.Descripcion.ToUpper().Contains(busqueda.ToUpper()) || x.Marca.Descripcion.ToUpper().Contains(busqueda.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = listaArticulos;
+            }
+
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltrada;
+            ocultarColumnas();
+        }
+
+        private void ocultarColumnas()
+        {
+            dgvArticulos.Columns["Imagen"].Visible = false;
+            dgvArticulos.Columns["ID"].Visible = false;
         }
     }
 }

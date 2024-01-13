@@ -36,6 +36,8 @@ namespace Presentación
             this.btnDetalle = new System.Windows.Forms.Button();
             this.pbxArticulo = new System.Windows.Forms.PictureBox();
             this.lblListado = new System.Windows.Forms.Label();
+            this.lblFiltroRapido = new System.Windows.Forms.Label();
+            this.txtFiltroRapido = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.SuspendLayout();
@@ -45,13 +47,13 @@ namespace Presentación
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvArticulos.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvArticulos.Location = new System.Drawing.Point(12, 47);
+            this.dgvArticulos.Location = new System.Drawing.Point(12, 85);
             this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.RowHeadersWidth = 51;
             this.dgvArticulos.RowTemplate.Height = 24;
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulos.Size = new System.Drawing.Size(850, 350);
+            this.dgvArticulos.Size = new System.Drawing.Size(850, 312);
             this.dgvArticulos.TabIndex = 0;
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
@@ -115,11 +117,30 @@ namespace Presentación
             this.lblListado.TabIndex = 6;
             this.lblListado.Text = "Listado de artículos:";
             // 
+            // lblFiltroRapido
+            // 
+            this.lblFiltroRapido.AutoSize = true;
+            this.lblFiltroRapido.Location = new System.Drawing.Point(649, 62);
+            this.lblFiltroRapido.Name = "lblFiltroRapido";
+            this.lblFiltroRapido.Size = new System.Drawing.Size(56, 17);
+            this.lblFiltroRapido.TabIndex = 7;
+            this.lblFiltroRapido.Text = "Buscar:";
+            // 
+            // txtFiltroRapido
+            // 
+            this.txtFiltroRapido.Location = new System.Drawing.Point(711, 59);
+            this.txtFiltroRapido.Name = "txtFiltroRapido";
+            this.txtFiltroRapido.Size = new System.Drawing.Size(151, 22);
+            this.txtFiltroRapido.TabIndex = 8;
+            this.txtFiltroRapido.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // ventanaListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1291, 465);
+            this.Controls.Add(this.txtFiltroRapido);
+            this.Controls.Add(this.lblFiltroRapido);
             this.Controls.Add(this.lblListado);
             this.Controls.Add(this.pbxArticulo);
             this.Controls.Add(this.btnDetalle);
@@ -151,6 +172,8 @@ namespace Presentación
         private System.Windows.Forms.Button btnDetalle;
         private System.Windows.Forms.PictureBox pbxArticulo;
         private System.Windows.Forms.Label lblListado;
+        private System.Windows.Forms.Label lblFiltroRapido;
+        private System.Windows.Forms.TextBox txtFiltroRapido;
     }
 }
 
