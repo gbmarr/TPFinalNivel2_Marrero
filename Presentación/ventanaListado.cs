@@ -179,10 +179,25 @@ namespace Presentación
                 string campo = cbxCampo.SelectedItem.ToString();
                 string criterio = cbxCriterio.SelectedItem.ToString();
                 string filtro = txtFiltrarBusqueda.Text;
-                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+                bool datosValidos = true;
 
-                btnEliminar.Enabled = dgvArticulos.CurrentRow == null ? false : true;
-
+                if(campo == "Precio")
+                {
+                    foreach (char letra in filtro)
+                    {
+                        if (!(char.IsNumber(letra)))
+                        {
+                            MessageBox.Show("El campo " + campo + " solo acepta números.");
+                            datosValidos = false;
+                            return;
+                        }
+                    }
+                }
+                if (datosValidos)
+                {
+                    dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+                    btnEliminar.Enabled = dgvArticulos.CurrentRow == null ? false : true;
+                }
             }
             catch (Exception ex)
             {
@@ -206,6 +221,20 @@ namespace Presentación
         private void txtFiltrarBusqueda_TextChanged(object sender, EventArgs e)
         {
             btnFiltrarBusqueda.Enabled = cbxCampo.SelectedItem != null && cbxCriterio.SelectedItem != null && (txtFiltrarBusqueda.Text != "" || txtFiltrarBusqueda.Text != null) ? true : false;
+        }
+
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
+            if(dgvArticulos.CurrentRow != null)
+            {
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                frmDetalleDeArticulo ventana = new frmDetalleDeArticulo(seleccionado);
+                ventana.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un artículo para mostrar los detalles");
+            }
         }
     }
 }
