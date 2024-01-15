@@ -47,6 +47,8 @@ namespace Presentación
             this.pbxAltaProducto = new System.Windows.Forms.PictureBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAgregarIMG = new System.Windows.Forms.Button();
+            this.lblAdvertencia = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAltaProducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,21 +129,21 @@ namespace Presentación
             // 
             this.txtCodProducto.Location = new System.Drawing.Point(176, 61);
             this.txtCodProducto.Name = "txtCodProducto";
-            this.txtCodProducto.Size = new System.Drawing.Size(132, 22);
+            this.txtCodProducto.Size = new System.Drawing.Size(193, 22);
             this.txtCodProducto.TabIndex = 8;
             // 
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(176, 89);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(132, 22);
+            this.txtNombre.Size = new System.Drawing.Size(193, 22);
             this.txtNombre.TabIndex = 9;
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(176, 117);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(132, 22);
+            this.txtDescripcion.Size = new System.Drawing.Size(193, 22);
             this.txtDescripcion.TabIndex = 10;
             // 
             // cbxMarca
@@ -151,7 +153,7 @@ namespace Presentación
             this.cbxMarca.FormattingEnabled = true;
             this.cbxMarca.Location = new System.Drawing.Point(176, 145);
             this.cbxMarca.Name = "cbxMarca";
-            this.cbxMarca.Size = new System.Drawing.Size(132, 24);
+            this.cbxMarca.Size = new System.Drawing.Size(193, 24);
             this.cbxMarca.TabIndex = 11;
             // 
             // cbxCategoria
@@ -161,14 +163,14 @@ namespace Presentación
             this.cbxCategoria.FormattingEnabled = true;
             this.cbxCategoria.Location = new System.Drawing.Point(176, 175);
             this.cbxCategoria.Name = "cbxCategoria";
-            this.cbxCategoria.Size = new System.Drawing.Size(132, 24);
+            this.cbxCategoria.Size = new System.Drawing.Size(193, 24);
             this.cbxCategoria.TabIndex = 12;
             // 
             // txtImagen
             // 
             this.txtImagen.Location = new System.Drawing.Point(176, 205);
             this.txtImagen.Name = "txtImagen";
-            this.txtImagen.Size = new System.Drawing.Size(132, 22);
+            this.txtImagen.Size = new System.Drawing.Size(193, 22);
             this.txtImagen.TabIndex = 13;
             this.txtImagen.Leave += new System.EventHandler(this.txtImagen_Leave);
             // 
@@ -176,15 +178,16 @@ namespace Presentación
             // 
             this.txtPrecio.Location = new System.Drawing.Point(176, 233);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(132, 22);
+            this.txtPrecio.Size = new System.Drawing.Size(193, 22);
             this.txtPrecio.TabIndex = 14;
             // 
             // pbxAltaProducto
             // 
-            this.pbxAltaProducto.Location = new System.Drawing.Point(383, 64);
+            this.pbxAltaProducto.Location = new System.Drawing.Point(483, 64);
             this.pbxAltaProducto.MaximumSize = new System.Drawing.Size(193, 191);
             this.pbxAltaProducto.MinimumSize = new System.Drawing.Size(193, 191);
             this.pbxAltaProducto.Name = "pbxAltaProducto";
+            this.pbxAltaProducto.Padding = new System.Windows.Forms.Padding(100);
             this.pbxAltaProducto.Size = new System.Drawing.Size(193, 191);
             this.pbxAltaProducto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxAltaProducto.TabIndex = 15;
@@ -210,11 +213,35 @@ namespace Presentación
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // btnAgregarIMG
+            // 
+            this.btnAgregarIMG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAgregarIMG.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarIMG.Location = new System.Drawing.Point(375, 202);
+            this.btnAgregarIMG.Name = "btnAgregarIMG";
+            this.btnAgregarIMG.Size = new System.Drawing.Size(89, 28);
+            this.btnAgregarIMG.TabIndex = 18;
+            this.btnAgregarIMG.Text = "Examinar";
+            this.btnAgregarIMG.UseVisualStyleBackColor = false;
+            this.btnAgregarIMG.Click += new System.EventHandler(this.btnAgregarIMG_Click);
+            // 
+            // lblAdvertencia
+            // 
+            this.lblAdvertencia.AutoSize = true;
+            this.lblAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdvertencia.ForeColor = System.Drawing.Color.Red;
+            this.lblAdvertencia.Location = new System.Drawing.Point(173, 285);
+            this.lblAdvertencia.Name = "lblAdvertencia";
+            this.lblAdvertencia.Size = new System.Drawing.Size(0, 15);
+            this.lblAdvertencia.TabIndex = 19;
+            // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(699, 320);
+            this.Controls.Add(this.lblAdvertencia);
+            this.Controls.Add(this.btnAgregarIMG);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.pbxAltaProducto);
@@ -267,5 +294,7 @@ namespace Presentación
         private System.Windows.Forms.PictureBox pbxAltaProducto;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnAgregarIMG;
+        private System.Windows.Forms.Label lblAdvertencia;
     }
 }

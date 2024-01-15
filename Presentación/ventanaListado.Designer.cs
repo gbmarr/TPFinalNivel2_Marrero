@@ -39,6 +39,7 @@ namespace Presentación
             this.lblFiltroRapido = new System.Windows.Forms.Label();
             this.txtFiltroRapido = new System.Windows.Forms.TextBox();
             this.gbxFiltrarBusqueda = new System.Windows.Forms.GroupBox();
+            this.btnResetBusqueda = new System.Windows.Forms.Button();
             this.btnFiltrarBusqueda = new System.Windows.Forms.Button();
             this.txtFiltrarBusqueda = new System.Windows.Forms.TextBox();
             this.lblFiltro = new System.Windows.Forms.Label();
@@ -108,8 +109,10 @@ namespace Presentación
             // pbxArticulo
             // 
             this.pbxArticulo.Location = new System.Drawing.Point(925, 47);
+            this.pbxArticulo.MaximumSize = new System.Drawing.Size(326, 312);
+            this.pbxArticulo.MinimumSize = new System.Drawing.Size(326, 312);
             this.pbxArticulo.Name = "pbxArticulo";
-            this.pbxArticulo.Padding = new System.Windows.Forms.Padding(130);
+            this.pbxArticulo.Padding = new System.Windows.Forms.Padding(100);
             this.pbxArticulo.Size = new System.Drawing.Size(326, 312);
             this.pbxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxArticulo.TabIndex = 5;
@@ -143,6 +146,7 @@ namespace Presentación
             // 
             // gbxFiltrarBusqueda
             // 
+            this.gbxFiltrarBusqueda.Controls.Add(this.btnResetBusqueda);
             this.gbxFiltrarBusqueda.Controls.Add(this.btnFiltrarBusqueda);
             this.gbxFiltrarBusqueda.Controls.Add(this.txtFiltrarBusqueda);
             this.gbxFiltrarBusqueda.Controls.Add(this.lblFiltro);
@@ -157,11 +161,21 @@ namespace Presentación
             this.gbxFiltrarBusqueda.TabStop = false;
             this.gbxFiltrarBusqueda.Text = "Filtrar búsqueda:";
             // 
+            // btnResetBusqueda
+            // 
+            this.btnResetBusqueda.Location = new System.Drawing.Point(577, 67);
+            this.btnResetBusqueda.Name = "btnResetBusqueda";
+            this.btnResetBusqueda.Size = new System.Drawing.Size(66, 24);
+            this.btnResetBusqueda.TabIndex = 7;
+            this.btnResetBusqueda.Text = "Reset";
+            this.btnResetBusqueda.UseVisualStyleBackColor = true;
+            this.btnResetBusqueda.Click += new System.EventHandler(this.btnResetBusqueda_Click);
+            // 
             // btnFiltrarBusqueda
             // 
-            this.btnFiltrarBusqueda.Location = new System.Drawing.Point(581, 66);
+            this.btnFiltrarBusqueda.Location = new System.Drawing.Point(417, 67);
             this.btnFiltrarBusqueda.Name = "btnFiltrarBusqueda";
-            this.btnFiltrarBusqueda.Size = new System.Drawing.Size(102, 24);
+            this.btnFiltrarBusqueda.Size = new System.Drawing.Size(154, 24);
             this.btnFiltrarBusqueda.TabIndex = 6;
             this.btnFiltrarBusqueda.Text = "Buscar";
             this.btnFiltrarBusqueda.UseVisualStyleBackColor = true;
@@ -169,15 +183,16 @@ namespace Presentación
             // 
             // txtFiltrarBusqueda
             // 
-            this.txtFiltrarBusqueda.Location = new System.Drawing.Point(385, 67);
+            this.txtFiltrarBusqueda.Location = new System.Drawing.Point(271, 67);
             this.txtFiltrarBusqueda.Name = "txtFiltrarBusqueda";
             this.txtFiltrarBusqueda.Size = new System.Drawing.Size(140, 22);
             this.txtFiltrarBusqueda.TabIndex = 5;
+            this.txtFiltrarBusqueda.TextChanged += new System.EventHandler(this.txtFiltrarBusqueda_TextChanged);
             // 
             // lblFiltro
             // 
             this.lblFiltro.AutoSize = true;
-            this.lblFiltro.Location = new System.Drawing.Point(382, 44);
+            this.lblFiltro.Location = new System.Drawing.Point(268, 44);
             this.lblFiltro.Name = "lblFiltro";
             this.lblFiltro.Size = new System.Drawing.Size(43, 17);
             this.lblFiltro.TabIndex = 4;
@@ -187,7 +202,7 @@ namespace Presentación
             // 
             this.cbxCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCriterio.FormattingEnabled = true;
-            this.cbxCriterio.Location = new System.Drawing.Point(201, 67);
+            this.cbxCriterio.Location = new System.Drawing.Point(144, 67);
             this.cbxCriterio.Name = "cbxCriterio";
             this.cbxCriterio.Size = new System.Drawing.Size(121, 24);
             this.cbxCriterio.TabIndex = 3;
@@ -195,7 +210,7 @@ namespace Presentación
             // lblCriterio
             // 
             this.lblCriterio.AutoSize = true;
-            this.lblCriterio.Location = new System.Drawing.Point(198, 44);
+            this.lblCriterio.Location = new System.Drawing.Point(141, 44);
             this.lblCriterio.Name = "lblCriterio";
             this.lblCriterio.Size = new System.Drawing.Size(57, 17);
             this.lblCriterio.TabIndex = 2;
@@ -269,6 +284,7 @@ namespace Presentación
         private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.ComboBox cbxCriterio;
         private System.Windows.Forms.Button btnFiltrarBusqueda;
+        private System.Windows.Forms.Button btnResetBusqueda;
     }
 }
 

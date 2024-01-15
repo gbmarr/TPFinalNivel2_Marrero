@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using dominio;
 using negocio;
+using System.Configuration;
 
 namespace Presentación
 {
     public partial class frmAltaArticulo : Form
     {
         private Articulo articulo = null;
+        private OpenFileDialog archivo = null;
 
         public frmAltaArticulo()
         {
@@ -39,29 +42,49 @@ namespace Presentación
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                if (articulo == null)
-                    articulo = new Articulo();
+                bool codigoValido = txtCodProducto.Text != "" && txtCodProducto.Text != null ? true : false;
+                bool nombreValido = txtNombre.Text != "" && txtNombre.Text != null ? true : false;
+                bool descValido = txtDescripcion.Text != "" && txtDescripcion.Text != null ? true : false;
+                bool marcaValido = cbxMarca.SelectedItem.ToString() != "" && cbxMarca.SelectedItem != null ? true : false;
+                bool categoriaValido = cbxCategoria.SelectedItem.ToString() != "" && cbxCategoria.SelectedItem != null ? true : false;
+                bool imgValido = txtImagen.Text != "" && txtImagen.Text != null ? true : false;
+                bool precioValido = txtPrecio.Text != "" && txtPrecio.Text != null ? true : false;
 
-                articulo.codArticulo = txtCodProducto.Text;
-                articulo.Nombre = txtNombre.Text;
-                articulo.Descripcion = txtDescripcion.Text;
-                articulo.Marca = (Elemento)cbxMarca.SelectedItem;
-                articulo.Categoria = (Elemento)cbxCategoria.SelectedItem;
-                articulo.Imagen = txtImagen.Text;
-                articulo.Precio = Decimal.Parse(txtPrecio.Text);
 
-                if(articulo.Id != 0)
+                if (codigoValido && nombreValido && descValido && marcaValido && categoriaValido && imgValido && precioValido)
                 {
-                    negocio.modificar(articulo);
-                    MessageBox.Show("Modificado exitosamente");
+                    if (articulo == null)
+                        articulo = new Articulo();
+
+                    articulo.codArticulo = txtCodProducto.Text;
+                    articulo.Nombre = txtNombre.Text;
+                    articulo.Descripcion = txtDescripcion.Text;
+                    articulo.Marca = (Elemento)cbxMarca.SelectedItem;
+                    articulo.Categoria = (Elemento)cbxCategoria.SelectedItem;
+                    articulo.Imagen = txtImagen.Text;
+                    articulo.Precio = Decimal.Parse(txtPrecio.Text);
+
+                    if(articulo.Id != 0)
+                    {
+                        negocio.modificar(articulo);
+                        MessageBox.Show("Modificado exitosamente");
+                    }
+                    else
+                    {
+                        negocio.agregar(articulo);
+                        MessageBox.Show("Agregado exitosamente");
+                    }
+
+                    if (archivo != null && !(txtImagen.Text.ToUpper().Contains("HTTP")))
+                        guardarImagen();
+
+                    Close();
                 }
                 else
                 {
-                    negocio.agregar(articulo);
-                    MessageBox.Show("Agregado exitosamente");
+                    lblAdvertencia.Text = "(complete todos los campos antes de 'Aceptar'";
                 }
 
-                Close();
             }
             catch (Exception ex)
             {
@@ -115,6 +138,25 @@ namespace Presentación
             {
                 pbxAltaProducto.Load("https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg");
             }
+        }
+
+        private void btnAgregarIMG_Click(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg;|png|*.png";
+            
+            if(archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtImagen.Text = archivo.FileName;
+                cargarImagen(archivo.FileName);
+
+
+            }
+        }
+
+        private void guardarImagen()
+        {
+                File.Copy(archivo.FileName, ConfigurationManager.AppSettings["directorio-IMG"] + archivo.SafeFileName);
         }
     }
 }

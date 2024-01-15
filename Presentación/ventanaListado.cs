@@ -24,6 +24,7 @@ namespace Presentación
         {
             cargarDatos();
             cargarCampos();
+            btnFiltrarBusqueda.Enabled = false;
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -124,6 +125,9 @@ namespace Presentación
 
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaFiltrada;
+
+            btnEliminar.Enabled = dgvArticulos.CurrentRow == null ? false : true;
+
             ocultarColumnas();
         }
 
@@ -144,20 +148,26 @@ namespace Presentación
 
         private void cbxCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string seleccionado = cbxCampo.SelectedItem.ToString();
-            if(seleccionado == "Precio")
+            if(cbxCampo.SelectedItem != null)
             {
-                cbxCriterio.Items.Clear();
-                cbxCriterio.Items.Add("Mayor a");
-                cbxCriterio.Items.Add("Menor a");
-                cbxCriterio.Items.Add("Igual a");
-            }
-            else
-            {
-                cbxCriterio.Items.Clear();
-                cbxCriterio.Items.Add("Comienza con");
-                cbxCriterio.Items.Add("Termina con");
-                cbxCriterio.Items.Add("Contiene");
+                string seleccionado = cbxCampo.SelectedItem.ToString();
+
+            txtFiltroRapido.Enabled = cbxCampo.SelectedItem != null ? false : true;
+
+                if(seleccionado == "Precio")
+                {
+                    cbxCriterio.Items.Clear();
+                    cbxCriterio.Items.Add("Mayor a");
+                    cbxCriterio.Items.Add("Menor a");
+                    cbxCriterio.Items.Add("Igual a");
+                }
+                else
+                {
+                    cbxCriterio.Items.Clear();
+                    cbxCriterio.Items.Add("Comienza con");
+                    cbxCriterio.Items.Add("Termina con");
+                    cbxCriterio.Items.Add("Contiene");
+                }
             }
         }
 
@@ -171,11 +181,31 @@ namespace Presentación
                 string filtro = txtFiltrarBusqueda.Text;
                 dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
 
+                btnEliminar.Enabled = dgvArticulos.CurrentRow == null ? false : true;
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnResetBusqueda_Click(object sender, EventArgs e)
+        {
+            cbxCampo.SelectedItem = null;
+            cbxCriterio.Items.Clear();
+            txtFiltrarBusqueda.Text = "";
+            txtFiltroRapido.Enabled = true;
+
+            cargarDatos();
+
+            if (dgvArticulos.CurrentRow != null)
+                btnEliminar.Enabled = true;
+        }
+
+        private void txtFiltrarBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            btnFiltrarBusqueda.Enabled = cbxCampo.SelectedItem != null && cbxCriterio.SelectedItem != null && (txtFiltrarBusqueda.Text != "" || txtFiltrarBusqueda.Text != null) ? true : false;
         }
     }
 }
